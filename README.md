@@ -1,4 +1,4 @@
-Write a short program that prints each number from 0 to 100. 
+Write a short program that prints each number from 1 to 100. 
 
 For each multiple of 3, print "Fizz" instead of the number. 
 For each multiple of 5, print "Buzz" instead of the number. 
