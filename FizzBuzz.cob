@@ -2,6 +2,8 @@
       * Author: Bob
       * Date: 8/29/18
       * Program demonstration FizzBuzz
+      * Current issues with leading zeroes
+      * http://www.pgrocer.net/Cis12/cobol3.html
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. FIZZBUZZ.
@@ -11,6 +13,8 @@
        01 W-I PIC 999 VALUE 1.
        01 W-F PIC 999 VALUE 0.
        01 W-TAB PIC A VALUE X"09".
+       01 FORMATTED-INTEGER PIC Z(2).
+       01 FORMATTED-SMALL-INTEGER PIC Z.
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
            PERFORM WHILE-LOOP.
@@ -34,9 +38,17 @@
                COMPUTE W-F = 1
              END-IF
 
-             IF (W-F = 0)
-               DISPLAY W-I W-TAB WITH NO ADVANCING
+             IF (W-F = 0) AND (W-I <= 9)
+               MOVE W-I TO FORMATTED-SMALL-INTEGER
+               DISPLAY FORMATTED-SMALL-INTEGER W-TAB WITH NO ADVANCING
+             END-IF
+
+             IF (W-F = 0) AND (W-I > 9)
+               MOVE W-I TO FORMATTED-INTEGER
+               DISPLAY FORMATTED-INTEGER W-TAB WITH NO ADVANCING
              END-IF
 
              COMPUTE W-I = W-I + 1
           END-PERFORM.
+
+
